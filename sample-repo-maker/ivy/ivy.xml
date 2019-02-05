@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0">
+    <info organisation="com.test" module="sample" revision="1.0" status="release" publication="20190124130142"/>
+    <configurations defaultconf="client">
+        <conf name="client" visibility="public" description="client classes" />
+        <conf name="server" visibility="public" description="server classes"/>
+        <conf name="client-source" visibility="public" description="client source"/>
+        <conf name="server-source" visibility="public" description="server source"/>
+    </configurations>
+    <publications>
+        <artifact name="sample-client" type="bin" ext="jar" conf="client"/>
+        <artifact name="sample-shared" type="bin" ext="jar" conf="client,server"/>
+        <artifact name="sample-server" type="bin" ext="jar" conf="server"/>
+        <artifact name="sample-client" type="source" ext="jar" conf="client-source"/>
+        <artifact name="sample-shared" type="source" ext="jar" conf="client-source,server-source"/>
+        <artifact name="sample-server" type="source" ext="jar" conf="server-source"/>
+    </publications>
+</ivy-module>

@@ -1,0 +1,88 @@
+plugins {
+    // Apply the java-library plugin to add support for Java Library
+    id 'java-library'
+}
+
+configurations {
+    client
+    clientSource
+    shared
+    sharedSource
+    server
+    serverSource
+}
+
+task clientJar(type: Jar) {
+    dependsOn classes
+    group 'build'
+
+    archiveName = 'sample-client-bin.jar'
+
+    from('build/classes/java/main') {
+        include("com/test/client/**.*")
+    }
+}
+
+task sharedJar(type: Jar) {
+    dependsOn classes
+    group 'build'
+
+    archiveName = 'sample-shared-bin.jar'
+
+    from('build/classes/java/main') {
+        include("com/test/shared/**.*")
+    }
+}
+
+task serverJar(type: Jar) {
+    dependsOn classes
+    group 'build'
+
+    archiveName = 'sample-server-bin.jar'
+
+    from('build/classes/java/main') {
+        include("com/test/server/**.*")
+    }
+}
+
+task clientSourceJar(type: Jar) {
+    group 'build'
+
+    archiveName = 'sample-client-source.jar'
+
+    from("src/main/java") {
+        include("com/test/client/**.*")
+    }
+}
+
+task sharedSourceJar(type: Jar) {
+    group 'build'
+
+    archiveName = 'sample-shared-source.jar'
+
+    from("src/main/java") {
+        include("com/test/shared/**.*")
+    }
+}
+
+task serverSourceJar(type: Jar) {
+    group 'build'
+
+    archiveName = 'sample-server-source.jar'
+
+    from("src/main/java") {
+        include("com/test/server/**.*")
+    }
+}
+
+artifacts {
+    client clientJar
+    clientSource clientSourceJar
+    shared sharedJar
+    sharedSource sharedSourceJar
+    server serverJar
+    serverSource serverSourceJar
+}
+
+jar.enabled = false
+assemble.dependsOn clientJar, clientSourceJar, sharedJar, sharedSourceJar, serverJar, serverSourceJar
